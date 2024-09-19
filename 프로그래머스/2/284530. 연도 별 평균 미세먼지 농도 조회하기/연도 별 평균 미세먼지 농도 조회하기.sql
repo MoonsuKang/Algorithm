@@ -1,0 +1,17 @@
+-- 코드를 작성해주세요
+SELECT 
+# DATE_FORMAT(YM,'%Y') AS YEAR,
+DATE_FORMAT(YM,'%Y')*1 AS YEAR,
+ROUND(AVG(PM_VAL1), 2) AS 'PM10',
+ROUND(AVG(PM_VAL2), 2) AS 'PM2.5'
+FROM AIR_POLLUTION
+WHERE LOCATION2 = '수원'
+GROUP BY YEAR
+ORDER BY YEAR ASC;
+
+
+
+
+# 수원 지역의 연도 별 평균 미세먼지 오염도와 평균 초미세먼지 오염도를 조회
+
+# YEAR	PM10	PM2.5
