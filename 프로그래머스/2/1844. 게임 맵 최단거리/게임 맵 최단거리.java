@@ -1,48 +1,46 @@
 import java.util.*;
 
 class Solution {
-    public int solution(int[][] maps) {
-        int n = maps.length; // 가로
-        int m = maps[0].length; // 세로
-        
-        // System.out.println(n);
-        // System.out.println(m);
-        
-        Queue<int[]> queue = new LinkedList<>();
-        queue.add(new int[]{0,0});
-        
-        //상하좌우 4방향
-        int[] dx = {-1,1,0,0};
+        int[] dx = {-1,1,0,0}; // 상하좌우 순서
         int[] dy = {0,0,-1,1};
+    public int solution(int[][] maps) {
+        int n = maps.length; // 세로
+        int m = maps[0].length; // 가로
         
-        // 각 반복마다 현재 위치를 큐에서 꺼내서 네 방향으로 이동할 수 있는지 확인
-        while(!queue.isEmpty()){
-            int[] current = queue.poll(); // 현재 위치에서 큐를 꺼내 0,0이야
+        //BFS 탐색을 위해서 큐를 사용해야됨
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(new int[]{0, 0}); // 시작지점은 0,0 에서 시작해
+        maps[0][0] = 1; // 출발 초기값 처리
+        
+        //BFS 시작
+        while(!queue.isEmpty()) { // 큐가 안비어잇을때
+            int[] current = queue.poll(); // 큐의 첫 번째 값을 반환해. 초기에는 0,0을 반환
             int x = current[0];
             int y = current[1];
             
-            //네방향 탐색
-            for(int i=0; i < 4; i++){
-                int nx = x + dx[i]; // 이동할 새 좌표
+            // 목표에 도착한다면
+            if(x == n-1 && y == m-1) {
+                return maps[x][y]; // 목표지점의 좌표
+            }
+            
+            // 상하좌우로 이동을 해
+            for(int i=0; i<4; i++){
+                int nx = x + dx[i];
                 int ny = y + dy[i];
-                
-                // 맵 범위를 넘어가거나 벽이거나 방문한 경우 스킵해야돼
-                if(nx < 0 || ny < 0 || nx >= n || ny >= m || maps[nx][ny] == 0) {
-                    continue;
-                }
-                //처음 방문하는 노드만 기록해
-                if(maps[nx][ny] == 1) {
-                    //이전 칸 까지의 거리에서 +1
-                    maps[nx][ny] = maps[x][y] + 1;
-                    //큐에 추가해
+                // 지도 범위를 벗어나지 않고, 길이 있는 곳(1)만 이동 가능
+                if(nx >= 0 && ny >= 0 && nx < n && ny < m && maps[nx][ny] == 1) {
                     queue.add(new int[]{nx, ny});
+                    // 이동하면서 현재까지의 경로 길이를 기록
+                    maps[nx][ny] = maps[x][y] + 1;
                 }
             }
         }
-        // 목표 지점까지의 최단 거리 반환
-        // 목표 지점에 도달할 수 없는 경우 -1 반환
-        return maps[n-1][m-1] > 1 ? maps[n-1][m-1] : -1;
+
+        
+        return -1;
     }
 }
 
-//최단거리 : BFS
+// 1은 길 0은 벽
+// bfs를 풀때는 상하좌우 방향을 정의해야된다.
+// 
