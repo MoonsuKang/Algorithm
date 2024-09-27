@@ -13,8 +13,10 @@ class Solution {
         return answer;
     }
     
-private int countDivisor(int num) {
+    // 약수 개수 계산
+    private int countDivisor(int num) {
         int count = 0;
+        // 제곱근 까지 약수 확인
         for (int i = 1; i * i <= num; i++) {
             if (num % i == 0) {
                 count++;
@@ -26,5 +28,6 @@ private int countDivisor(int num) {
         return count;
     }
 }
+
 
 // 15 -> 1, 3, 5, 15 -> power=4 -> if limit 3 -> power=2
