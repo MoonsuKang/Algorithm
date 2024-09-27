@@ -34,7 +34,7 @@ class Solution {
         return SecondToTime(position);
     }
     
-    // mm:ss 형식을 초 단위로 변환
+    // mmss를 초로 계산
     private int TimeToSecond(String time){
         String[] panel = time.split(":");
         int minute = Integer.parseInt(panel[0]);
@@ -43,7 +43,7 @@ class Solution {
         return (minute * 60) + second;
     }
 
-    // 초 단위를 mm:ss 형식으로 변환
+    // 다시 mmss로
     private String SecondToTime(int calculatedSeconds) {
         int minutes = calculatedSeconds / 60;
         int seconds = calculatedSeconds % 60;
