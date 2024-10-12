@@ -2,11 +2,11 @@ class Solution {
     public int[] solution(int brown, int yellow) {
         int[] answer = {};
         
-        int total = brown + yellow;
+        int total = brown + yellow; // 12
         // 가능한 세로 길이 (height)는 1부터 시작
-        for(int height =1; height <= total; height++){
+        for(int height =1; height <= total; height++){ //1~12
             // 가로 길이 (width)는 전체 격자 수를 height로 나눈 값
-            if (total % height == 0) {
+            if (total % height == 0) { // 12 / h
                 int width = total / height;
                 
                 // 가로가 세로보다 크거나 같아야 한다는 조건
