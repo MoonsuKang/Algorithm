@@ -8,7 +8,7 @@ class Solution {
             playerMap.put(players[i], i); // 인덱스가 키 벨류가 이름
         }
         
-        // 추월을 처리해
+        // 추월 처리
         for(String calling: callings) {
             //추월한 선수 순위
             int currentIndex = playerMap.get(calling);
